@@ -97,7 +97,8 @@ td, th {
     width: 50%;
     text-align: left;
     padding: 15px;
-    border-bottom: 1px solid #ddd
+    border-bottom: 1px solid #ddd;
+    color: #ffded3;
 }
 
 tr:hover {
