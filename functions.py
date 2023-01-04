@@ -43,3 +43,6 @@ def search_film(film):
         results = cur.execute(f"select title, year from movies where title LIKE '%{film}%' COLLATE NOCASE ORDER BY year DESC").fetchall()
 
     return results
+
+
+# SELECT title, year, rating from movies WHERE
