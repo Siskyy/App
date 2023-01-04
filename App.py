@@ -16,7 +16,8 @@ Session(app)
 @app.route('/')
 @login_required
 def hello():
-    return render_template('index.html')
+    print(session["username"])
+    return render_template('index.html', username=session["username"])
 
 @app.route('/index')
 def index():
@@ -32,7 +33,8 @@ def login():
     # Check credentials of the form to see if they match with the user database
     if request.method == "POST":
         # Query database for username
-        check_credentials(request.form.get("username"), request.form.get("password"))
+        username = request.form.get("username")
+        check_credentials(username, request.form.get("password"))
         # Redirect user to home page
         return redirect("/")
     else:
@@ -44,7 +46,10 @@ def logout():
     session.clear()
     return redirect("/")
 # ---------------------------------------- SIGN UP ---------------------------------------------------
+@app.route("/signup")
+def signup():
 
+    return redirect("/")
 
 # ---------------------------------------- SEARCH ---------------------------------------------------
 

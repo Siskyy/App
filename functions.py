@@ -40,7 +40,6 @@ def search_film(film):
     print(film)
     with sqlite3.connect("films.db") as con:
         cur = con.cursor()
-        results = cur.execute(f"select title, year from movies where title LIKE '%{film}%' COLLATE NOCASE ORDER BY LENGTH(title)").fetchall()
-    print(results)
+        results = cur.execute(f"select title, year from movies where title LIKE '%{film}%' COLLATE NOCASE ORDER BY year DESC").fetchall()
 
     return results

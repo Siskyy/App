@@ -6,10 +6,12 @@
 
 {% block content %}
     <form action="/search" method="post" class="search-form">
-        <div class="search-bar">
-            <input autocomplete="off" autofocus id="search-bar" name="search-bar" placeholder="Film title" type="text">
-            <button type="submit" class="button">Search</button>
-        </div>     
+            <div class="bar">
+                <input autocomplete="off" autofocus id="search-bar" name="search-bar" placeholder="Film title" type="text">
+            </div>
+            <div class="bar">
+                <button type="submit" class="button">Search</button>
+            </div>   
     </form>
     {% if results %}
     <table class="search-results">

@@ -35,24 +35,19 @@ form {
     margin: 0rem 20rem 0rem 20rem;
     height: 200px;
     display: flex;
-    justify-content: center;
-    position: relative;
-    grid-template-rows: 1fr 1fr 1fr;
+    flex-direction: column;
+    align-items: center;
 }
 
-.search-form {
-    height: 150px;
-    width: 100%;
-    margin: 0 auto;
-}
 
-.login-div {
-    margin: 0 auto;
+.bar {
+    width: 50%;
+    margin-bottom: 20px;
 }
 
 input {
     width: 80%;
-    height: 25%;
+    height: 80%;
     padding: 5px 10px 5px 10px;
     margin-bottom: 20px;
     border-radius: 14px;
@@ -76,14 +71,14 @@ input {
     border-radius: 14px;
     width: 30%;
     height: 35px;
-    justify-self: center;
-    position: relative;
+    margin: 0 auto;
 }
 
 .button:hover {
     background-color: #4e6abf;
     cursor: pointer;
 }
+
 
 /* TABLE VALUES */
 
