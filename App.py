@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
-from functions import login_required, check_credentials, search_film
+from functions import login_required, check_credentials, search_film, get_dash
 import sqlite3
 
 app = Flask(__name__)
@@ -17,11 +17,8 @@ Session(app)
 @login_required
 def hello():
     print(session["username"])
-    return render_template('index.html', username=session["username"])
-
-@app.route('/index')
-def index():
-    return render_template('index.html')
+    levels = get_dash(session["user_id"])
+    return render_template('index.html', username=session["username"], levels=levels)
 
 # ---------------------------------------- LOGIN ---------------------------------------------------
 
@@ -85,3 +82,12 @@ def rankings():
 
 if __name__ == '__main__':
     app.run()
+
+
+# ---------------------------------------- DASHBOARD ---------------------------------------------------
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+
+    return render_template("dashboard.html")

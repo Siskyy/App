@@ -3,11 +3,12 @@ body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     justify-content: center;
+    color: #d4e0f8
 }
 
 .header {
     background: #243482;
-    margin: 0 auto;
+    margin: 0;
     text-align: center;
     padding-top: 1.5rem;
     width: 100%;
@@ -18,6 +19,10 @@ body {
     grid-template-columns: 2fr 2fr 2fr 10fr;
     align-content: center;
     justify-content: center;
+}
+
+h1 {
+    margin-left: 20px;
 }
 
 a {
@@ -89,7 +94,7 @@ table {
 
 td, th {
     height: 20px;
-    width: 50%;
+    width: 25%;
     text-align: left;
     padding: 15px;
     border-bottom: 1px solid #ddd;

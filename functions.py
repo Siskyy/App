@@ -17,19 +17,18 @@ def login_required(f):
 
 # Function which checks whether the username and password match an entry within the database
 def check_credentials(username, password):
-
     # First check the username
-    with sqlite3.connect("users.db") as con:
+    with sqlite3.connect("database.db") as con:
         cur = con.cursor()
-        user_pass = cur.execute(f"SELECT password FROM User_data WHERE user_name = '{username}'").fetchone()[0]
+        user_pass = cur.execute(f"SELECT password FROM users WHERE username = '{username}'").fetchone()[0]
         print(user_pass)
 
         # Now check if password matches
         if user_pass == password:
             print("You're in!")
 
-            session["user_id"] = cur.execute(f"SELECT id FROM User_data WHERE user_name = '{username}'").fetchone()[0]
-            session["username"] = cur.execute(f"SELECT user_name FROM User_data WHERE user_name = '{username}'").fetchone()[0]
+            session["user_id"] = cur.execute(f"SELECT id FROM users WHERE username = '{username}'").fetchone()[0]
+            session["username"] = cur.execute(f"SELECT username FROM users WHERE username = '{username}'").fetchone()[0]
             
             return redirect("/")
         else:
@@ -41,8 +40,20 @@ def search_film(film):
     with sqlite3.connect("films.db") as con:
         cur = con.cursor()
         results = cur.execute(f"select title, year from movies where title LIKE '%{film}%' COLLATE NOCASE ORDER BY year DESC").fetchall()
-
+        print(results)
     return results
 
 
 # SELECT title, year, rating from movies WHERE
+
+
+# NEW -----
+
+
+def get_dash(user_id):
+
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        levels = cur.execute(f"SELECT technology, level, experience, favourite FROM levels WHERE user_id = '{user_id}'").fetchall()
+        print(levels)
+        return levels
