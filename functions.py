@@ -57,3 +57,12 @@ def get_dash(user_id):
         levels = cur.execute(f"SELECT technology, level, experience, favourite FROM levels WHERE user_id = '{user_id}'").fetchall()
         print(levels)
         return levels
+
+def search_users(technology):
+
+    print(technology)
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        results = cur.execute(f"select username, forename, surname, team from users INNER JOIN levels ON users.id=levels.user_id where levels.technology LIKE '{technology}' COLLATE NOCASE").fetchall()
+        print(results)
+    return results

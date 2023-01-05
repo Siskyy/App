@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
-from functions import login_required, check_credentials, search_film, get_dash
+from functions import login_required, check_credentials, search_film, get_dash, search_users
 import sqlite3
 
 app = Flask(__name__)
@@ -54,10 +54,12 @@ def search():
     
     if request.method == "POST":
         
-        search_results = search_film(request.form.get("search-bar"))
+        search_term = request.form.get("search-bar")
+        print(f"Search term: {search_term}")
+        search_results = search_users(search_term)
         
 
-        return render_template('search.html', results=search_results)
+        return render_template('search.html', results=search_results, search_term=search_term)
     
     else:
         return render_template("search.html")
