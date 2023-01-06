@@ -12,18 +12,15 @@
   </head>
   <body>
     <nav class="header">
-      <a href="/">Profile</a>
-      <a href="/search">Search</a>
+      <a href="/" class="nav-a">Profile</a>
+      <a href="/search" class="nav-a">Search</a>
     {% if session["user_id"] %}
-        <a href="/rankings">Rankings</a>
-        <a href="/logout">Logout of {{ session["username"] }}</a>
+        <a href="/rankings" class="nav-a">Friends</a>
+        <a href="/logout" class="nav-a">Logout of {{ session["username"] }}</a>
     {% else %}
-        <a href="/login">Login</a>
+        <a href="/login" class="nav-a">Login</a>
     {% endif %}
     </nav>
-    {% for message in get_flashed_messages() %}
-      <div class="flash">{{ message }}</div>
-    {% endfor %}
     {% block content %}{% endblock %}
   </body>
 </html>
