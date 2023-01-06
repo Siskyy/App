@@ -107,4 +107,5 @@ td, th {
 
 tr:hover {
     background-color: #243482;
+    cursor: pointer;
 }
