@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% block content %}
+  <h1>@{{username}}</h1>
+  <div>
+    {% if levels %}
+    <table class="search-results">
+        <thead>
+            <th>Technology</th>
+            <th>Level</th>
+            <th>Experience (months)</th>
+            <th>Favourite</th>
+        </thead>
+        <tbody>
+            {% for level in levels %}
+            <tr>
+                <td>{{level[0]}}</td>
+                <td>{{level[1]}}</td>
+                <td>{{level[2]}}</td>
+                <td>{{level[3]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+  </div>
+{% endblock %}

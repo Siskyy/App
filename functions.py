@@ -66,3 +66,11 @@ def search_users(technology):
         results = cur.execute(f"select username, forename, surname, team from users INNER JOIN levels ON users.id=levels.user_id where levels.technology LIKE '{technology}' COLLATE NOCASE").fetchall()
         print(results)
     return results
+
+
+# load_profile(user_id):
+
+    # with sqlite3.connect("database.db") as con:
+    #     cur = con.cursor()
+    #     profile_data = cur.execute(f"")
+    

@@ -57,12 +57,22 @@ def search():
         search_term = request.form.get("search-bar")
         print(f"Search term: {search_term}")
         search_results = search_users(search_term)
-        
-
         return render_template('search.html', results=search_results, search_term=search_term)
-    
     else:
         return render_template("search.html")
+
+# ---------------------------------------- PROFILE ---------------------------------------------------
+
+@app.route('/profile/<username>')
+def profile(username):
+
+    # Need to find user_id from username
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        user_id = cur.execute(f"SELECT id FROM users WHERE username = '{username}'").fetchone()[0]
+
+    levels = get_dash(user_id)
+    return render_template('profile.html', username=username, levels=levels)
 
 # ---------------------------------------- RANKINGS ---------------------------------------------------
 @app.route('/rankings')
@@ -74,9 +84,6 @@ def rankings():
         cur = con.cursor()
         ranked_films = cur.execute(f"SELECT * FROM '{user_id}_rankings' ORDER BY ranking ASC")
     print(ranked_films)
-    
-    
-    
     
     return render_template("rankings.html") # , films = ranked_films (so that the list of films can be displayed later on html file)
 
