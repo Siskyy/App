@@ -78,6 +78,10 @@ input {
     font-size: 14px;
 }
 
+label {
+    padding: 10px 0 20px 0;
+}
+
 .button {
     background-color: #243482;
     color: white;
@@ -92,6 +96,24 @@ input {
 .button:hover {
     background-color: #4e6abf;
     cursor: pointer;
+}
+
+.add-skills {
+    padding: 15px;
+    background-color: #243482;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin:  20px 0px 20px 20px;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-skills:hover {
+    cursor: pointer;
+    background-color: #4e6abf;
 }
 
 
@@ -130,4 +152,10 @@ tr:hover {
     left: 0;
     right: 0;
     align-self: center;
+}
+
+.under-table {
+    padding: 0 0 0 0;
+    display: flex;
+    align-items: center;
 }

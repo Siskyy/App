@@ -74,6 +74,18 @@ def profile(username):
     levels = get_dash(user_id)
     return render_template('profile.html', username=username, levels=levels)
 
+# ---------------------------------------- ADD SKILL ---------------------------------------------------
+@app.route('/add-skill', methods=["GET", "POST"])
+@login_required
+def add_skill():
+    levels = get_dash(session["user_id"])
+
+    if request.method == "POST":
+        return redirect('/')
+    else:
+        return redirect('/')
+        return render_template('add-skill.html', levels=levels)
+
 # ---------------------------------------- RANKINGS ---------------------------------------------------
 @app.route('/rankings')
 def rankings():
