@@ -22,9 +22,24 @@
         </tbody>
     </table>
     {% endif %}
-    <div class="under-table">
-      <a class="add-skills" type="button" href="/add-skill">+</a>
-      <h3>Add a Skill</h3>
-    </div>
+    <h3>Add a Skill</h3>
+    <form action="/" method="post" class="add-skill-form">
+      <div class="bar-fill">
+          <label>Name of Technology</label>
+          <input class="add-skill-input" autocomplete="off" autofocus id="technology" name="technology" placeholder="e.g. Python" type="text">
+      </div>
+      <div class="bar-fill">
+          <label>Level of experience (0-10):</label>
+          <input class="no-pads" autocomplete="off" id="level" name="level" placeholder="Level" type="range" min="0" max="10">
+          <output name="out" for="level"></output>
+      </div>
+      <div class="bar-fill">
+          <label>Experience (months):</label>
+          <input class="no-pads" autocomplete="off" id="level" name="experience" placeholder="Experience" type="range" min="0" max="240" step="1">
+      </div>
+      <div class="bar-fill">
+          <button type="submit" class="button">Add</button>
+      </div>   
+  </form>
   </div>
 {% endblock %}

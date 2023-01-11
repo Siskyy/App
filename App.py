@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
-from functions import login_required, check_credentials, search_film, get_dash, search_users
+from functions import login_required, check_credentials, search_film, get_dash, search_users, add_skill
 import sqlite3
 
 app = Flask(__name__)
@@ -13,10 +13,12 @@ Session(app)
 
 # ---------------------------------------- MAIN ---------------------------------------------------
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 @login_required
 def hello():
     print(session["username"])
+    if request.method == "POST":
+        add_skill(session['user_id'], request.form.get("technology"), request.form.get("level"), request.form.get("experience"))
     levels = get_dash(session["user_id"])
     return render_template('index.html', username=session["username"], levels=levels)
 
@@ -77,13 +79,13 @@ def profile(username):
 # ---------------------------------------- ADD SKILL ---------------------------------------------------
 @app.route('/add-skill', methods=["GET", "POST"])
 @login_required
-def add_skill():
+def addskill():
     levels = get_dash(session["user_id"])
 
     if request.method == "POST":
-        return redirect('/')
+        return redirect('/search')
     else:
-        return redirect('/')
+        return redirect('/search')
         return render_template('add-skill.html', levels=levels)
 
 # ---------------------------------------- RANKINGS ---------------------------------------------------

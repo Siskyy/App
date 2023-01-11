@@ -73,4 +73,11 @@ def search_users(technology):
     # with sqlite3.connect("database.db") as con:
     #     cur = con.cursor()
     #     profile_data = cur.execute(f"")
+
+def add_skill(user_id, technology, level, experience):
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        cur.execute(f"INSERT INTO levels ('user_id', 'technology', 'level', 'experience') VALUES ({user_id}, '{technology}', {level}, {experience})")
+        con.commit()
+    return redirect('/')
     
