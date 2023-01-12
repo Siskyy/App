@@ -45,6 +45,13 @@ a {
     font-size: 16px;
 }
 
+.cancel-link {
+    margin: 0px 5px 0px 20px;
+    padding: 8px 10px 8px 10px;
+    background-color: #243482;
+    border-radius: 14px;
+}
+
 form {
     padding: 5rem 0rem 0rem 0rem;
     margin: 0rem 20rem 0rem 20rem;
@@ -121,8 +128,10 @@ label {
 }
 
 .row-button {
-    height: 20px;
+    height: 0px;
     margin: 0px;
+    color: red;
+    font-weight: bold;
 }
 
 .add-skills {
