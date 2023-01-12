@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
-from functions import login_required, check_credentials, search_film, get_dash, search_users, add_skill
+from functions import login_required, check_credentials, search_film, get_dash, search_users, add_skill, delete_skill_db
 import sqlite3
 
 app = Flask(__name__)
@@ -13,13 +13,18 @@ Session(app)
 
 # ---------------------------------------- MAIN ---------------------------------------------------
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/', methods=["GET", "POST", "DELETE"])
 @login_required
 def hello():
     print(session["username"])
     if request.method == "POST":
         add_skill(session['user_id'], request.form.get("technology"), request.form.get("level"), request.form.get("experience"))
+    elif request.method == "DELETE":
+        print("deleting skill")
+        return redirect('/')
+    
     levels = get_dash(session["user_id"])
+    
     return render_template('index.html', username=session["username"], levels=levels)
 
 # ---------------------------------------- LOGIN ---------------------------------------------------
@@ -86,7 +91,21 @@ def addskill():
         return redirect('/search')
     else:
         return redirect('/search')
-        return render_template('add-skill.html', levels=levels)
+
+# ---------------------------------------- DELETE SKILL ---------------------------------------------------
+@app.route('/delete-skill/<skill>', methods=["GET", "POST"])
+@login_required
+def delete_skill(skill):
+    print(f"we have reached this route: skill: {skill}")
+    if request.method == "POST":
+        print(f"Deleting skill {skill}")
+
+        delete_skill_db(session["user_id"], skill)
+
+        return redirect('/')
+    else:
+        return render_template('delete-skill.html', skill=skill)
+
 
 # ---------------------------------------- RANKINGS ---------------------------------------------------
 @app.route('/rankings')

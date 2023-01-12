@@ -81,3 +81,10 @@ def add_skill(user_id, technology, level, experience):
         con.commit()
     return redirect('/')
     
+def delete_skill_db(user_id, skill):
+
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        cur.execute(f"DELETE FROM levels WHERE user_id = {user_id} AND technology = '{skill}'")
+        con.commit()
+    return redirect('/')

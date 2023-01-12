@@ -120,6 +120,11 @@ label {
     cursor: pointer;
 }
 
+.row-button {
+    height: 20px;
+    margin: 0px;
+}
+
 .add-skills {
     padding: 15px;
     background-color: #243482;
