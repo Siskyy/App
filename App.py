@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
-from functions import login_required, check_credentials, search_film, get_dash, search_users, add_skill, delete_skill_db
+from functions import login_required, check_credentials, get_dash, search_users, add_skill, delete_skill_db
 import sqlite3
 
 app = Flask(__name__)
@@ -96,40 +96,11 @@ def addskill():
 @app.route('/delete-skill/<skill>', methods=["GET", "POST"])
 @login_required
 def delete_skill(skill):
-    print(f"we have reached this route: skill: {skill}")
     if request.method == "POST":
-        print(f"Deleting skill {skill}")
-
         delete_skill_db(session["user_id"], skill)
-
         return redirect('/')
     else:
         return render_template('delete-skill.html', skill=skill)
 
-
-# ---------------------------------------- RANKINGS ---------------------------------------------------
-@app.route('/rankings')
-def rankings():
-    
-    user_id = 0
-    # Get the ranked films and save them to a variable
-    with sqlite3.connect("rankings.db") as con:
-        cur = con.cursor()
-        ranked_films = cur.execute(f"SELECT * FROM '{user_id}_rankings' ORDER BY ranking ASC")
-    print(ranked_films)
-    
-    return render_template("rankings.html") # , films = ranked_films (so that the list of films can be displayed later on html file)
-
-
-
 if __name__ == '__main__':
     app.run()
-
-
-# ---------------------------------------- DASHBOARD ---------------------------------------------------
-
-@app.route('/dashboard')
-@login_required
-def dashboard():
-
-    return render_template("dashboard.html")

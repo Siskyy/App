@@ -7,7 +7,7 @@ body {
 }
 
 .highlighted {
-    color: #d4e0f8;
+    color: #3abbea;
 }
 
 .header {
@@ -158,21 +158,32 @@ label {
 table {
     width: 80%;
     margin: 20px;
+    border-radius: 20px;
+    background-color: #4e6abf;
+    opacity: .9;
 }
 
 td, th {
     height: 20px;
-    width: 25%;
     text-align: left;
     vertical-align: middle;
     padding: 15px;
-    border-bottom: 1px solid #ddd;
+    border: none;
     color: #ffded3;
+}
+
+th {
+    border-bottom: 1px solid #d4e0f8;
 }
 
 td {
     position: relative;
     align-items: center;
+}
+
+tr:nth-child(even) {
+    background-color: #374ea4;
+    opacity: .8;
 }
 
 tr:hover {
@@ -182,11 +193,6 @@ tr:hover {
 
 .fill-cell {
     display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     align-self: center;
 }
 

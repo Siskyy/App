@@ -9,15 +9,16 @@
             <th>Level</th>
             <th>Experience (months)</th>
             <th>Favourite</th>
+            <th>Delete</th>
         </thead>
         <tbody>
             {% for level in levels %}
             <tr>
-                <td>{{level[0]}}</td>
-                <td>{{level[1]}}</td>
-                <td>{{level[2]}}</td>
-                <td>{{level[3]}}</td>
-                <td>
+                <td style="width: 25%">{{level[0]}}</td>
+                <td style="width: 10%">{{level[1]}}</td>
+                <td style="width: 10%">{{level[2]}}</td>
+                <td style="width: 10%">{{level[3]}}</td>
+                <td style="width: 3%">
                     <a href="{{ url_for('delete_skill', skill=level[0])}}" class="no-pads row-button">X</a>               
                 </td>
             </tr>
@@ -29,7 +30,7 @@
     <form action="/" method="post" class="add-skill-form">
       <div class="bar-fill">
           <label>Name of Technology</label>
-          <input class="add-skill-input" autocomplete="off" autofocus id="technology" name="technology" placeholder="e.g. Python" type="text">
+          <input class="add-skill-input" autocomplete="off" id="technology" name="technology" placeholder="e.g. Python" type="text">
       </div>
       <div class="bar-fill">
           <label>Level of experience (0-10):</label>

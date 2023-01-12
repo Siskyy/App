@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, session
+from flask import redirect, session
 from functools import wraps
 import sqlite3
 
@@ -17,37 +17,25 @@ def login_required(f):
 
 # Function which checks whether the username and password match an entry within the database
 def check_credentials(username, password):
-    # First check the username
-    with sqlite3.connect("database.db") as con:
+    # First check the username in the database
+    with sqlite3.connect("database.db") as con: # connects to the database
         cur = con.cursor()
+        # Checks wether there is a password for the username inputted by the user
+        # If the user enters a username that does not exist, a password will not be found
         user_pass = cur.execute(f"SELECT password FROM users WHERE username = '{username}'").fetchone()[0]
-        print(user_pass)
+        print(f"Password: {user_pass}")
 
         # Now check if password matches
         if user_pass == password:
-            print("You're in!")
-
+            # If the password is correct the session data is set to the user who just logged in (these can be accessed globally)
             session["user_id"] = cur.execute(f"SELECT id FROM users WHERE username = '{username}'").fetchone()[0]
             session["username"] = cur.execute(f"SELECT username FROM users WHERE username = '{username}'").fetchone()[0]
-            
+            # Once the user successfully logs in, redirect to the home page
             return redirect("/")
         else:
+            # TODO: Add warning to say that the password is INCORRECT
             print("WRONG!")
     return
-
-def search_film(film):
-    print(film)
-    with sqlite3.connect("films.db") as con:
-        cur = con.cursor()
-        results = cur.execute(f"select title, year from movies where title LIKE '%{film}%' COLLATE NOCASE ORDER BY year DESC").fetchall()
-        print(results)
-    return results
-
-
-# SELECT title, year, rating from movies WHERE
-
-
-# NEW -----
 
 
 def get_dash(user_id):
@@ -63,16 +51,10 @@ def search_users(technology):
     print(technology)
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
-        results = cur.execute(f"select username, forename, surname, team from users INNER JOIN levels ON users.id=levels.user_id where levels.technology LIKE '{technology}' COLLATE NOCASE").fetchall()
+        results = cur.execute(f"select username, forename, surname, team, levels.level, levels.experience from users INNER JOIN levels ON users.id=levels.user_id where levels.technology LIKE '{technology}' COLLATE NOCASE").fetchall()
         print(results)
     return results
 
-
-# load_profile(user_id):
-
-    # with sqlite3.connect("database.db") as con:
-    #     cur = con.cursor()
-    #     profile_data = cur.execute(f"")
 
 def add_skill(user_id, technology, level, experience):
     with sqlite3.connect("database.db") as con:
@@ -80,9 +62,9 @@ def add_skill(user_id, technology, level, experience):
         cur.execute(f"INSERT INTO levels ('user_id', 'technology', 'level', 'experience') VALUES ({user_id}, '{technology}', {level}, {experience})")
         con.commit()
     return redirect('/')
-    
-def delete_skill_db(user_id, skill):
 
+
+def delete_skill_db(user_id, skill):
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
         cur.execute(f"DELETE FROM levels WHERE user_id = {user_id} AND technology = '{skill}'")
