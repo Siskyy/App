@@ -38,9 +38,12 @@ def login():
     if request.method == "POST":
         # Query database for username
         username = request.form.get("username")
-        check_credentials(username, request.form.get("password"))
+        validation = check_credentials(username, request.form.get("password"))
+        if validation[0]:
         # Redirect user to home page
-        return redirect("/")
+            return redirect("/")
+        else:
+            return render_template("login.html", message=validation[1])
     else:
         return render_template("login.html")
 
@@ -48,10 +51,6 @@ def login():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/")
-# ---------------------------------------- SIGN UP ---------------------------------------------------
-@app.route("/signup")
-def signup():
     return redirect("/")
 
 # ---------------------------------------- SEARCH ---------------------------------------------------

@@ -7,7 +7,14 @@ body {
 }
 
 .highlighted {
-    color: #3abbea;
+    color: rgb(36, 166, 123);
+}
+
+.error-message {
+    margin: 0 0 20px 0;
+    width: 50%;
+    font-weight: bold;
+    color:rgb(222, 67, 73)
 }
 
 .header {

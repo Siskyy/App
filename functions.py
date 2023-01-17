@@ -1,4 +1,4 @@
-from flask import redirect, session
+from flask import redirect, session, flash
 from functools import wraps
 import sqlite3
 
@@ -22,8 +22,13 @@ def check_credentials(username, password):
         cur = con.cursor()
         # Checks wether there is a password for the username inputted by the user
         # If the user enters a username that does not exist, a password will not be found
-        user_pass = cur.execute(f"SELECT password FROM users WHERE username = '{username}'").fetchone()[0]
+        user_pass = cur.execute(f"SELECT password FROM users WHERE username = '{username}'").fetchone()
         print(f"Password: {user_pass}")
+        if user_pass == None:
+            message = f"User '{username}' does not exist!"
+            return [False, message]
+        else:
+            user_pass = user_pass[0]
 
         # Now check if password matches
         if user_pass == password:
@@ -31,11 +36,11 @@ def check_credentials(username, password):
             session["user_id"] = cur.execute(f"SELECT id FROM users WHERE username = '{username}'").fetchone()[0]
             session["username"] = cur.execute(f"SELECT username FROM users WHERE username = '{username}'").fetchone()[0]
             # Once the user successfully logs in, redirect to the home page
-            return redirect("/")
+            return [True]
         else:
             # TODO: Add warning to say that the password is INCORRECT
-            print("WRONG!")
-    return
+            message = "Password Incorrect! Try again"
+            return [False, message]
 
 
 def get_dash(user_id):

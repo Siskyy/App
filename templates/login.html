@@ -7,14 +7,16 @@
 {% block content %}
     <form action="/login" method="post">
         <div class="bar">
-            <input autocomplete="off" autofocus id="username" name="username" placeholder="Username" type="text">
+            <input autocomplete="off" autofocus id="username" name="username" placeholder="Username" type="text" required>
         </div>
         <div class="bar">
-            <input id="password" name="password" placeholder="Password" type="password">
+            <input id="password" name="password" placeholder="Password" type="password" required>
         </div>
+        {% if message %}
+        <p class="error-message">{{message}}</p>
+        {% endif %}
         <div class="bar">
             <button type="submit" class="button">Log In</button>
-            <button type="button" class="button">Signup</button>
         </div>
     </form>
 {% endblock %}
