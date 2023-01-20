@@ -48,7 +48,6 @@ def get_dash(user_id):
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
         levels = cur.execute(f"SELECT technology, level, experience, favourite FROM levels WHERE user_id = '{user_id}'").fetchall()
-        print(levels)
         return levels
 
 def search_users(technology):
@@ -79,6 +78,6 @@ def add_skill(user_id, technology, level, experience, favourite):
 def delete_skill_db(user_id, skill):
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
-        cur.execute(f"DELETE FROM levels WHERE user_id = {user_id} AND technology = '{skill}'")
+        cur.execute(f"DELETE FROM levels WHERE user_id = {user_id} AND technology = '{str(skill)}'")
         con.commit()
     return redirect('/')
