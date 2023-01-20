@@ -61,10 +61,17 @@ def search_users(technology):
     return results
 
 
-def add_skill(user_id, technology, level, experience):
+def add_skill(user_id, technology, level, experience, favourite):
+    
+    liked = ""
+    if favourite:
+        liked = "True"
+    else:
+        liked = "False"
+    
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
-        cur.execute(f"INSERT INTO levels ('user_id', 'technology', 'level', 'experience') VALUES ({user_id}, '{technology}', {level}, {experience})")
+        cur.execute(f"INSERT INTO levels ('user_id', 'technology', 'level', 'experience', 'favourite') VALUES ({user_id}, '{technology}', {level}, '{experience}', '{liked}')")
         con.commit()
     return redirect('/')
 

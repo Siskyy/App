@@ -18,7 +18,7 @@ Session(app)
 def hello():
     print(session["username"])
     if request.method == "POST":
-        add_skill(session['user_id'], request.form.get("technology"), request.form.get("level"), request.form.get("experience"))
+        add_skill(session['user_id'], request.form.get("technology"), request.form.get("level"), request.form.get("experience"), request.form.get("favourite"))
     elif request.method == "DELETE":
         print("deleting skill")
         return redirect('/')

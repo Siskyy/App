@@ -12,9 +12,9 @@
   </head>
   <body>
     <nav class="header">
-      <a href="/" class="nav-a">Profile</a>
-      <a href="/search" class="nav-a">Search</a>
     {% if session["user_id"] %}
+        <a href="/" class="nav-a">Profile</a>
+        <a href="/search" class="nav-a">Search</a>
         <a href="/logout" class="nav-a">Logout of {{ session["username"] }}</a>
     {% else %}
         <a href="/login" class="nav-a">Login</a>

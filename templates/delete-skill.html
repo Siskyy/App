@@ -7,9 +7,9 @@
 {% block content %}
     <form action="/delete-skill/{{skill}}" method="post">
         <h3>Are you sure you want to remove this skill? ({{skill}})</h3>
-        <div class="bar">
-            <button type="submit" class="button" value="delete">Delete</button>
+        <div class="display-flex">
             <a href="/" class="cancel-link">Cancel</a>
+            <button type="submit" class="delete-button" value="delete">Delete</button>
         </div>
     </form>
 {% endblock %}
