@@ -1,6 +1,17 @@
 {% extends "main.html" %}
 {% block content %}
-  <h1>@{{username}}</h1>
+  <div>
+    <div class="profile-header">
+      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"/>
+      <h1>@{{username}}</h1>
+    </div>
+    <div>
+      <h3>Time at Amazon: <span class="highlighted">{{user_desc[0][0]}} months</span></h3>
+      <h3>Team: <span class="highlighted">{{user_desc[0][1]}}</span></h3>
+    </div>
+
+  </div>
+
   <div>
     {% if levels %}
     <table class="search-results">

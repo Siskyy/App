@@ -30,7 +30,7 @@
                 <td style="width: 25%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[1]}} {{result[2]}}</a></td>
                 <td style="width: 15%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[3]}}</a></td>
                 <td style="width: 10%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[4]}}/10</a></td>
-                <td style="width: 10%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[5]}} months</a></td>
+                <td style="width: 20%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[5]}} months</a></td>
             </tr>
             {% endfor %}
         </tbody>

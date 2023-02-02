@@ -2,6 +2,8 @@ from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
 from functions import login_required, check_credentials, get_dash, search_users, add_skill, delete_skill_db
 import sqlite3
+import webbrowser
+from threading import Timer
 
 app = Flask(__name__)
 
@@ -23,7 +25,7 @@ def hello():
         print("deleting skill")
         return redirect('/')
     
-    levels = get_dash(session["user_id"])
+    levels = get_dash(session["user_id"])[0]
     
     return render_template('index.html', username=session["username"], levels=levels)
 
@@ -77,8 +79,10 @@ def profile(username):
         cur = con.cursor()
         user_id = cur.execute(f"SELECT id FROM users WHERE username = '{username}'").fetchone()[0]
 
-    levels = get_dash(user_id)
-    return render_template('profile.html', username=username, levels=levels)
+    data = get_dash(user_id)
+    levels = data[0]
+    user_desc = data[1]
+    return render_template('profile.html', username=username, levels=levels, user_desc=user_desc)
 
 # ---------------------------------------- ADD SKILL ---------------------------------------------------
 @app.route('/add-skill', methods=["GET", "POST"])
@@ -101,5 +105,11 @@ def delete_skill(skill):
     else:
         return render_template('delete-skill.html', skill=skill)
 
+def open_tab():
+    webbrowser.open_new("http://127.0.0.1:2000")
+
+
 if __name__ == '__main__':
-    app.run()
+    Timer(1, open_tab).start()
+    app.run(port=2000)
+    

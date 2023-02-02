@@ -257,3 +257,17 @@ tr:hover {
     display: flex;
     align-items: center;
 }
+
+
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    height: 150px;
+    margin-left: 20px;
+}
