@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
-from functions import login_required, check_credentials, get_dash, search_users, add_skill, delete_skill_db
+from functions import login_required, check_credentials, get_dash, search_users, add_skill, delete_skill_db, get_all_users
 import sqlite3
 import webbrowser
 from threading import Timer
@@ -63,9 +63,13 @@ def search():
     if request.method == "POST":
         
         search_term = request.form.get("search-bar")
-        print(f"Search term: {search_term}")
-        search_results = search_users(search_term)
-        return render_template('search.html', results=search_results, search_term=search_term)
+        if not search_term:
+            user_results = get_all_users()
+            search_results = ""
+        else:
+            search_results = search_users(search_term)
+            user_results = ""
+        return render_template('search.html', results=search_results, search_term=search_term, user_results=user_results)
     else:
         return render_template("search.html")
 

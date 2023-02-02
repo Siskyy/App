@@ -13,7 +13,27 @@
                 <button type="submit" class="button">Search</button>
             </div>   
     </form>
-    {% if results %}
+    {% if user_results %}
+        <h1>All Users:</h1>
+        <table class="search-results">
+            <thead>
+                <th>Alias</th>
+                <th>Name</th>
+                <th>Team</th>
+                <th>Tenure</th>
+            </thead>
+            <tbody>
+                {% for result in user_results %}
+                <tr>
+                    <td style="width: 20%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">@{{result[0]}}</a></td>
+                    <td style="width: 25%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[1]}} {{result[2]}}</a></td>
+                    <td style="width: 15%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[3]}}</a></td>
+                    <td style="width: 10%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[4]}} months</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elif results %}
     <h2>Showing results for engineers experienced in <span class="highlighted">{{search_term}}</span></h2>
     <table class="search-results">
         <thead>
@@ -30,10 +50,12 @@
                 <td style="width: 25%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[1]}} {{result[2]}}</a></td>
                 <td style="width: 15%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[3]}}</a></td>
                 <td style="width: 10%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[4]}}/10</a></td>
-                <td style="width: 20%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[5]}} months</a></td>
+                <td style="width: 20%"><a href="{{ url_for('profile', username=result[0])}}" class="fill-cell">{{result[5]}}</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <h2>No results for <span style="color: rgb(222, 67, 73)">{{search_term}}</span></h2>
     {% endif %}
 {% endblock %}

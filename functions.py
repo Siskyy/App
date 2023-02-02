@@ -23,7 +23,6 @@ def check_credentials(username, password):
         # Checks wether there is a password for the username inputted by the user
         # If the user enters a username that does not exist, a password will not be found
         user_pass = cur.execute(f"SELECT password FROM users WHERE username = '{username}'").fetchone()
-        print(f"Password: {user_pass}")
         if user_pass == None:
             message = f"User '{username}' does not exist!"
             return [False, message]
@@ -52,14 +51,16 @@ def get_dash(user_id):
         return [levels, user_desc]
 
 def search_users(technology):
-
-    print(technology)
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
         results = cur.execute(f"select username, forename, surname, team, levels.level, levels.experience from users INNER JOIN levels ON users.id=levels.user_id where levels.technology LIKE '{technology}' COLLATE NOCASE ORDER BY levels.level DESC").fetchall()
-        print(results)
     return results
 
+def get_all_users():
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        results = cur.execute(f"SELECT username, forename, surname, team, tenure FROM users").fetchall()
+    return results
 
 def add_skill(user_id, technology, level, experience, favourite):
     
