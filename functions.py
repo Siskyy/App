@@ -1,6 +1,9 @@
-from flask import redirect, session, flash
+from flask import redirect, session
 from functools import wraps
 import sqlite3
+import logging
+
+logging.basicConfig(filename='app.log', filemode='w', format='%(levelname)s - %(message)s')
 
 def login_required(f):
     """
@@ -25,6 +28,7 @@ def check_credentials(username, password):
         user_pass = cur.execute(f"SELECT password FROM users WHERE username = '{username}'").fetchone()
         if user_pass == None:
             message = f"User '{username}' does not exist!"
+            logging.error("404 - Username not found")
             return [False, message]
         else:
             user_pass = user_pass[0]
@@ -39,6 +43,7 @@ def check_credentials(username, password):
         else:
             # TODO: Add warning to say that the password is INCORRECT
             message = "Password Incorrect! Try again"
+            logging.error("403 - Password Incorrect")
             return [False, message]
 
 
