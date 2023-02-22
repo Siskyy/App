@@ -35,13 +35,12 @@ def check_credentials(username, password):
 
         # Now check if password matches
         if user_pass == password:
-            # If the password is correct the session data is set to the user who just logged in (these can be accessed globally)
+            # Set session data to logged in user
             session["user_id"] = cur.execute(f"SELECT id FROM users WHERE username = '{username}'").fetchone()[0]
             session["username"] = cur.execute(f"SELECT username FROM users WHERE username = '{username}'").fetchone()[0]
             # Once the user successfully logs in, redirect to the home page
             return [True]
         else:
-            # TODO: Add warning to say that the password is INCORRECT
             message = "Password Incorrect! Try again"
             logging.error("403 - Password Incorrect")
             return [False, message]
