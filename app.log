@@ -1,31 +1,6 @@
-WARNING - no boto3 module found
 INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:2000
 INFO - [33mPress CTRL+C to quit[0m
-INFO - 127.0.0.1 - - [22/Feb/2023 16:01:37] "GET / HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:01:37] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:01:43] "GET /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:01:43] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:01:46] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:01:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:02:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:10] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:10] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:15] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:15] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:21] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:24] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:24] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:29] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:29] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:35] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:35] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:42] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:42] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:44] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:44] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:47] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:47] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:53] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [22/Feb/2023 16:03:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [03/Mar/2023 12:30:15] "[32mGET / HTTP/1.1[0m" 302 -
+INFO - 127.0.0.1 - - [03/Mar/2023 12:30:15] "GET /login HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [03/Mar/2023 12:30:15] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
