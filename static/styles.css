@@ -271,3 +271,19 @@ img {
     height: 150px;
     margin-left: 20px;
 }
+
+.edit {
+    margin-left: 20px;
+}
+
+.edit:hover {
+    cursor: pointer;
+    color: #243482;
+}
+
+.update-form-container {
+    margin: 0 auto;
+    justify-self: center;
+    position: relative;
+    left: 50%;
+}

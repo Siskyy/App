@@ -10,6 +10,7 @@
             <th>Experience (months)</th>
             <th>Favourite</th>
             <th>Delete</th>
+            <th>Edit</th>
         </thead>
         <tbody>
             {% for level in levels %}
@@ -21,6 +22,9 @@
                 <td style="width: 3%">
                     <a href="{{ url_for('delete_skill', skill=level[0])}}" class="no-pads row-button">X</a>               
                 </td>
+                <td style="width: 3%">
+                  <a href="{{ url_for('update_skill', skill=level[0])}}" class="no-pads">Edit</a>               
+              </td>
             </tr>
             {% endfor %}
         </tbody>

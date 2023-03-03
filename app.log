@@ -1,6 +1,24 @@
 INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:2000
 INFO - [33mPress CTRL+C to quit[0m
-INFO - 127.0.0.1 - - [03/Mar/2023 12:30:15] "[32mGET / HTTP/1.1[0m" 302 -
-INFO - 127.0.0.1 - - [03/Mar/2023 12:30:15] "GET /login HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 12:30:15] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:58:11] "GET / HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:58:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:58:13] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:58:13] "[32mGET / HTTP/1.1[0m" 302 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:58:13] "GET /login HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:58:13] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:58:18] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:58:18] "GET / HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:58:18] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:59:29] "GET /update-skill/Python HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:59:29] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:59:42] "GET /update-skill/Python HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:59:42] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:59:50] "GET /update-skill/Python HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [03/Mar/2023 14:59:50] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [03/Mar/2023 15:00:06] "GET /update-skill/Python HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [03/Mar/2023 15:00:06] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [03/Mar/2023 15:02:27] "GET / HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [03/Mar/2023 15:02:27] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [03/Mar/2023 15:04:00] "GET /update-skill/Python HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [03/Mar/2023 15:04:00] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -

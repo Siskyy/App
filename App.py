@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
-from functions import login_required, check_credentials, get_dash, search_users, add_skill, delete_skill_db, get_all_users
+from functions import login_required, check_credentials, get_dash, search_users, add_skill, delete_skill_db, get_all_users, update_skill_db
 import sqlite3
 import webbrowser
 from threading import Timer
@@ -101,7 +101,7 @@ def addskill():
         return redirect('/search')
 
 # ---------------------------------------- DELETE SKILL ---------------------------------------------------
-@app.route('/delete-skill/<skill>', methods=["GET", "POST"])
+@app.route('/delete-skill/<skill>', methods=["GET", "POST"], endpoint="delete_skill")
 @login_required
 def delete_skill(skill):
     if request.method == "POST":
@@ -110,6 +110,17 @@ def delete_skill(skill):
     else:
         return render_template('delete-skill.html', skill=skill)
 
+# ---------------------------------------- DELETE SKILL ---------------------------------------------------
+
+@app.route('/update-skill/<skill>', methods=["GET", "POST"], endpoint='update_skill')
+@login_required
+def update_skill(skill):
+    if request.method == "POST":
+        # TODO: INSERT FUNCTION TO UPDATE AND SET NEW VALUES
+        return redirect('/')
+    else:
+        return render_template('update-skill.html', skill=skill)
+
 def open_tab():
     webbrowser.open_new("http://127.0.0.1:2000")
 
@@ -117,4 +128,3 @@ def open_tab():
 if __name__ == '__main__':
     Timer(1, open_tab).start()
     app.run(port=2000)
-    

@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+
+{% block title %}
+    Change Password
+{% endblock %}
+
+{% block content %}
+<div >
+    <form action="/update-skill/{{skill}}" method="post" >
+        <h3>Update <span class="highlighted">{{skill}}</span></h3>
+        <div class="bar-fill favourite-container">
+        <input class="add-skill-input favourite" autocomplete="off" id="favourite" name="favourite" type="checkbox" value="True">
+        <label for="favourite" class="inline-label">Favourite?</label>
+        </div>
+        <div class="bar-fill">
+            <label>Level of experience (0-10):</label>
+            <input class="no-pads" autocomplete="off" id="level" name="level" placeholder="Level" type="range" min="0" max="10" required>
+        </div>
+        <div class="bar-fill">
+            <label>Experience (months):</label>
+        </div>
+            <div class="bar-fill">
+            <input class="radio-input"type="radio" id="experience" name="experience" value="< 3 months">
+            <label for="html">< 3 months</label><br>
+            <input class="radio-input"type="radio" id="experience" name="experience" value="3-6 months">
+            <label for="html">3-12 months</label><br>
+            <input class="radio-input"type="radio" id="experience" name="experience" value="12-24 months">
+            <label for="html">12-24 months</label><br>
+            <input class="radio-input"type="radio" id="experience" name="experience" value="> 24 months">
+            <label for="html">> 24 months</label><br>
+            </div>
+        <div class="bar-fill">
+            <button type="submit" class="button">Update</button>
+        </div>   
+    </form>
+</div>
+{% endblock %}
