@@ -110,14 +110,17 @@ def delete_skill(skill):
     else:
         return render_template('delete-skill.html', skill=skill)
 
-# ---------------------------------------- DELETE SKILL ---------------------------------------------------
+# ---------------------------------------- UPDATE SKILL ---------------------------------------------------
 
 @app.route('/update-skill/<skill>', methods=["GET", "POST"], endpoint='update_skill')
 @login_required
 def update_skill(skill):
     if request.method == "POST":
-        # TODO: INSERT FUNCTION TO UPDATE AND SET NEW VALUES
-        return redirect('/')
+        if (request.form.get("technology") and request.form.get("level") and request.form.get("experience") and request.form.get("favourite")):
+            update_skill_db(session['user_id'], request.form.get("technology"), request.form.get("level"), request.form.get("experience"), request.form.get("favourite"))
+            return redirect('/')
+        else:
+            return render_template('update-skill.html', skill=skill)
     else:
         return render_template('update-skill.html', skill=skill)
 
