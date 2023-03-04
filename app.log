@@ -1,31 +1,13 @@
 INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:2000
 INFO - [33mPress CTRL+C to quit[0m
-INFO - 127.0.0.1 - - [03/Mar/2023 15:37:40] "GET / HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:37:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:37:41] "[32mGET /logout HTTP/1.1[0m" 302 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:37:41] "[32mGET / HTTP/1.1[0m" 302 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:37:41] "GET /login HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:37:41] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-ERROR - 404 - Username not found
-INFO - 127.0.0.1 - - [03/Mar/2023 15:37:46] "POST /login HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:37:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-ERROR - 403 - Password Incorrect
-INFO - 127.0.0.1 - - [03/Mar/2023 15:37:55] "POST /login HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:37:55] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:13] "[32mPOST /login HTTP/1.1[0m" 302 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:13] "GET / HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:13] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:30] "POST / HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:30] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:33] "GET /delete-skill/C HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:34] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:35] "[32mPOST /delete-skill/C HTTP/1.1[0m" 302 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:35] "GET / HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:35] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:45] "GET /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:45] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:46] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:53] "POST /search HTTP/1.1" 200 -
-INFO - 127.0.0.1 - - [03/Mar/2023 15:38:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [04/Mar/2023 17:26:54] "GET / HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [04/Mar/2023 17:26:54] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [04/Mar/2023 17:26:57] "GET /search HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [04/Mar/2023 17:26:57] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [04/Mar/2023 17:26:58] "POST /search HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [04/Mar/2023 17:26:58] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [04/Mar/2023 17:27:21] "GET / HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [04/Mar/2023 17:27:21] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+INFO - 127.0.0.1 - - [04/Mar/2023 17:27:27] "POST / HTTP/1.1" 200 -
+INFO - 127.0.0.1 - - [04/Mar/2023 17:27:27] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -

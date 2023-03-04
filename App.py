@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
-from functions import login_required, check_credentials, get_dash, search_users, add_skill, delete_skill_db, get_all_users, update_skill_db
+from functions import login_required, check_credentials, get_dash, search_users, add_skill, check_for_duplicate ,delete_skill_db, get_all_users, update_skill_db
 import sqlite3
 import webbrowser
 from threading import Timer
@@ -20,6 +20,9 @@ Session(app)
 def hello():
     print(session["username"])
     if request.method == "POST":
+        # Check if skill already exists in table
+        if check_for_duplicate(session['user_id'], request.form.get("technology")):
+            return redirect('/')
         add_skill(session['user_id'], request.form.get("technology"), request.form.get("level"), request.form.get("experience"), request.form.get("favourite"))
     elif request.method == "DELETE":
         print("deleting skill")
@@ -89,17 +92,6 @@ def profile(username):
     user_desc = data[1]
     return render_template('profile.html', username=username, levels=levels, user_desc=user_desc)
 
-# ---------------------------------------- ADD SKILL ---------------------------------------------------
-@app.route('/add-skill', methods=["GET", "POST"])
-@login_required
-def addskill():
-    levels = get_dash(session["user_id"])
-
-    if request.method == "POST":
-        return redirect('/search')
-    else:
-        return redirect('/search')
-
 # ---------------------------------------- DELETE SKILL ---------------------------------------------------
 @app.route('/delete-skill/<skill>', methods=["GET", "POST"], endpoint="delete_skill")
 @login_required
@@ -116,11 +108,21 @@ def delete_skill(skill):
 @login_required
 def update_skill(skill):
     if request.method == "POST":
-        if (request.form.get("technology") and request.form.get("level") and request.form.get("experience") and request.form.get("favourite")):
-            update_skill_db(session['user_id'], request.form.get("technology"), request.form.get("level"), request.form.get("experience"), request.form.get("favourite"))
+        print(skill)
+        print(request.form.get("level"))
+        print(request.form.get("experience"))
+        print(request.form.get("favourite"))
+        print("Excecuting update")
+        if request.form.get("level") and request.form.get("experience"):
+            if request.form.get("technology"): 
+                fav = True 
+            else: 
+                fav = False
+            print("LETS GO")
+            update_skill_db(session['user_id'], skill, request.form.get("level"), request.form.get("experience"), fav)
             return redirect('/')
         else:
-            return render_template('update-skill.html', skill=skill)
+            render_template('update-skill.html', skill=skill)
     else:
         return render_template('update-skill.html', skill=skill)
 

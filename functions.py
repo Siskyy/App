@@ -58,13 +58,23 @@ def search_users(technology):
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
         results = cur.execute(f"select username, forename, surname, team, levels.level, levels.experience from users INNER JOIN levels ON users.id=levels.user_id where levels.technology LIKE '{technology}' COLLATE NOCASE ORDER BY levels.level DESC").fetchall()
+        if not results:
+            logging.info("No users found")
     return results
 
 def get_all_users():
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
         results = cur.execute(f"SELECT username, forename, surname, team, tenure FROM users").fetchall()
+        if results:
+            logging.error("409 - Skill already exists")
     return results
+
+def check_for_duplicate(user_id, technology):
+    with sqlite3.connect("database.db") as con:
+        cur = con.cursor()
+        dupes = cur.execute(f"SELECT technology FROM levels WHERE user_id = '{user_id}' AND technology = '{technology}'").fetchall()
+    return dupes
 
 def add_skill(user_id, technology, level, experience, favourite):
     
