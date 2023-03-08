@@ -36,10 +36,9 @@ def check_credentials(username, password):
         # Now check if password matches
         if user_pass == password:
             # Set session data to logged in user
-            session["user_id"] = cur.execute(f"SELECT id FROM users WHERE username = '{username}'").fetchone()[0]
-            session["username"] = cur.execute(f"SELECT username FROM users WHERE username = '{username}'").fetchone()[0]
+            user_id = cur.execute(f"SELECT id FROM users WHERE username = '{username}'").fetchone()[0]
             # Once the user successfully logs in, redirect to the home page
-            return [True]
+            return [True, user_id]
         else:
             message = "Password Incorrect! Try again"
             logging.error("403 - Password Incorrect")
@@ -88,7 +87,7 @@ def add_skill(user_id, technology, level, experience, favourite):
         cur = con.cursor()
         cur.execute(f"INSERT INTO levels ('user_id', 'technology', 'level', 'experience', 'favourite') VALUES ({user_id}, '{technology}', {level}, '{experience}', '{liked}')")
         con.commit()
-    return redirect('/')
+    return 200
 
 
 def delete_skill_db(user_id, skill):
@@ -96,7 +95,7 @@ def delete_skill_db(user_id, skill):
         cur = con.cursor()
         cur.execute(f"DELETE FROM levels WHERE user_id = {user_id} AND technology = '{str(skill)}'")
         con.commit()
-    return redirect('/')
+    return 200
 
 def update_skill_db(user_id, technology, level, experience, favourite):
     with sqlite3.connect("database.db") as con:

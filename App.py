@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, request, redirect
+from flask import Flask, render_template, session, request, redirect, abort, jsonify
 from flask_session import Session
 from functions import login_required, check_credentials, get_dash, search_users, add_skill, check_for_duplicate ,delete_skill_db, get_all_users, update_skill_db
 import sqlite3
@@ -24,6 +24,7 @@ def hello():
         if check_for_duplicate(session['user_id'], request.form.get("technology")):
             return redirect('/')
         add_skill(session['user_id'], request.form.get("technology"), request.form.get("level"), request.form.get("experience"), request.form.get("favourite"))
+        return redirect('/')
     elif request.method == "DELETE":
         print("deleting skill")
         return redirect('/')
@@ -46,6 +47,8 @@ def login():
         validation = check_credentials(username, request.form.get("password"))
         if validation[0]:
         # Redirect user to home page
+            session["username"] = username
+            session["user_id"] = validation[1]
             return redirect("/")
         else:
             return render_template("login.html", message=validation[1])
