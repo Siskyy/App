@@ -19,7 +19,7 @@ def login_required(f):
     return decorated_function
 
 # Function which checks whether the username and password match an entry within the database
-def check_credentials(username, password):
+def check_credentials(username: str, password: str):
     # First check the username in the database
     with sqlite3.connect("database.db") as con: # connects to the database
         cur = con.cursor()
@@ -45,7 +45,7 @@ def check_credentials(username, password):
             return [False, message]
 
 
-def get_dash(user_id):
+def get_dash(user_id: str):
 
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
@@ -53,12 +53,15 @@ def get_dash(user_id):
         levels = cur.execute(f"SELECT technology, level, experience, favourite FROM levels WHERE user_id = '{user_id}'").fetchall()
         return [levels, user_desc]
 
-def search_users(technology):
+def search_users(technology: str):
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
-        results = cur.execute(f"select username, forename, surname, team, levels.level, levels.experience from users INNER JOIN levels ON users.id=levels.user_id where levels.technology LIKE '{technology}' COLLATE NOCASE ORDER BY levels.level DESC").fetchall()
+        results = cur.execute(f"""select 
+            username, forename, surname, team, levels.level, levels.experience 
+            from users INNER JOIN levels ON users.id=levels.user_id 
+            where levels.technology LIKE '{technology}' COLLATE NOCASE ORDER BY levels.level DESC""").fetchall()
         if not results:
-            logging.info("No users found")
+            logging.info("404 - No users found")
     return results
 
 def get_all_users():
@@ -69,13 +72,13 @@ def get_all_users():
             logging.error("409 - Skill already exists")
     return results
 
-def check_for_duplicate(user_id, technology):
+def check_for_duplicate(user_id: str, technology: str):
     with sqlite3.connect("database.db") as con:
         cur = con.cursor()
         dupes = cur.execute(f"SELECT technology FROM levels WHERE user_id = '{user_id}' AND technology = '{technology}'").fetchall()
     return dupes
 
-def add_skill(user_id, technology, level, experience, favourite):
+def add_skill(user_id: str, technology: str, level, experience: str, favourite):
     
     liked = ""
     if favourite:
@@ -103,4 +106,4 @@ def update_skill_db(user_id, technology, level, experience, favourite):
         cur.execute(f"UPDATE levels SET level = '{level}', experience = '{experience}', favourite = '{favourite}' WHERE technology = '{technology}' AND user_id = '{user_id}'")
         con.commit()
 
-    return redirect('/')
+    return 200

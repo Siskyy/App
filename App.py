@@ -18,7 +18,6 @@ Session(app)
 @app.route('/', methods=["GET", "POST", "DELETE"])
 @login_required
 def hello():
-    print(session["username"])
     if request.method == "POST":
         # Check if skill already exists in table
         if check_for_duplicate(session['user_id'], request.form.get("technology")):
