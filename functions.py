@@ -3,6 +3,7 @@ from functools import wraps
 import sqlite3
 import logging
 
+# Clears the log file and and setup new logger
 logging.basicConfig(filename='app.log', filemode='w', format='%(levelname)s - %(message)s')
 
 def login_required(f):

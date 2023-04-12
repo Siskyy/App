@@ -18,25 +18,25 @@ Session(app)
 @app.route('/', methods=["GET", "POST", "DELETE"])
 @login_required
 def hello():
+    # If a POST request is triggered from the add skill form
     if request.method == "POST":
         # Check if skill already exists in table
         if check_for_duplicate(session['user_id'], request.form.get("technology")):
             return redirect('/')
         add_skill(session['user_id'], request.form.get("technology"), request.form.get("level"), request.form.get("experience"), request.form.get("favourite"))
         return redirect('/')
+    # If a DELETE request is triggered from the delete skill form
     elif request.method == "DELETE":
-        print("deleting skill")
         return redirect('/')
-    
+    # Fetch the skills of the current user
     levels = get_dash(session["user_id"])[0]
-    
+    # render the user dashboard
     return render_template('index.html', username=session["username"], levels=levels)
 
 # ---------------------------------------- LOGIN ---------------------------------------------------
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
     # Forget any user_id
     session.clear()
     # Check credentials of the form to see if they match with the user database
@@ -55,6 +55,7 @@ def login():
         return render_template("login.html")
 
 # ---------------------------------------- LOGOUT ---------------------------------------------------
+
 @app.route("/logout")
 def logout():
     session.clear()
@@ -69,12 +70,14 @@ def search():
     if request.method == "POST":
         
         search_term = request.form.get("search-bar")
+        # If nothing is searched -> return all users
         if not search_term:
             user_results = get_all_users()
             search_results = ""
         else:
             search_results = search_users(search_term)
             user_results = ""
+            # Render search results from the search form
         return render_template('search.html', results=search_results, search_term=search_term, user_results=user_results)
     else:
         return render_template("search.html")
@@ -110,17 +113,13 @@ def delete_skill(skill):
 @login_required
 def update_skill(skill):
     if request.method == "POST":
-        print(skill)
-        print(request.form.get("level"))
-        print(request.form.get("experience"))
-        print(request.form.get("favourite"))
-        print("Excecuting update")
+
         if request.form.get("level") and request.form.get("experience"):
             if request.form.get("technology"): 
                 fav = True 
             else: 
                 fav = False
-            print("LETS GO")
+
             update_skill_db(session['user_id'], skill, request.form.get("level"), request.form.get("experience"), fav)
             return redirect('/')
         else:
@@ -131,7 +130,7 @@ def update_skill(skill):
 def open_tab():
     webbrowser.open_new("http://127.0.0.1:2000")
 
-
+# Opens in new tab on localhost:2000
 if __name__ == '__main__':
     Timer(1, open_tab).start()
     app.run(port=2000)
